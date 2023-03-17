@@ -1,0 +1,92 @@
+﻿@using HomeworkExt.Core.Models.Domains;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - HomeworkExt</title>
+	<link rel="stylesheet" href="~/lib/bootstrap-3.4.1/css/bootstrap.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" asp-controller="Car" asp-action="Index">Tablica ogłoszeń</a>
+				</div>
+
+				@if (SignInManager.IsSignedIn(User))
+				{
+					<ul class="nav navbar-nav">
+						<li><a asp-controller="Car" asp-action="Add">Dodaj ogłoszenie</a></li>
+						@*<li class="active"><a href="#">Nowe ogłoszenie</a></li>*@
+						@*<li><a href="#">Dodaj ogłoszenie</a></li>*@
+					</ul>
+				}
+				
+				<partial name="_LoginPartial" />
+
+@*				<ul class="nav navbar-nav navbar-right">
+					<li><a asp-area="Identity" asp-page="/Account/Register"><span class="glyphicon glyphicon-user"></span> Rejestracja</a></li>
+					<li><a asp-area="Identity" asp-page="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Zaloguj się</a></li>
+				</ul>*@
+			</div>
+		</nav>
+
+
+		@*		<form id="filterForm">
+		<div class="form-row align-items-center">
+		<div class="col-auto">
+		@Html.TextBoxFor(x => x.FilterTasks.Title, new { @class = "form-control mb-2", placeholder = "Tytuł" })
+		</div>
+
+		<div class="col-auto">
+		@Html.DropDownListFor(x => x.FilterTasks.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "-- wybierz kategrię --", new { @class = "form-control mb-2" })
+		</div>
+		<div class="col-auto">
+		<button type="submit" class="btn btn-primary mb-2">Szukaj</button>
+		</div>
+		</div>
+		</form>*@
+
+
+
+
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			&copy; 2023 - HomeworkExt - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+		</div>
+	</footer>
+
+	<script src="~/lib/jquery/dist/jquery-3.6.3.min.js"></script>
+	<script src="~/js/jquery-input-file-text.js"></script>
+	<script src="~/lib/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@RenderSection("Scripts", required: false)
+</body>
+</html>
+
+
+<script>
+
+	$(document).ready(function () {
+		$('#car-image').inputFileText({
+			text: 'Dodaj zdjęcie',
+			buttonClass: 'button-file',
+			textClass: 'text-class'
+		});
+
+	});
+
+</script>

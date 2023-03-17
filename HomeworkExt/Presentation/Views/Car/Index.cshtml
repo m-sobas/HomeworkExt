@@ -1,0 +1,142 @@
+﻿@using HomeworkExt.Core.Application.Extensions;
+@using HomeworkExt.Core.Models;
+@using HomeworkExt.Core.Models.Domains;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
+
+@model CarsViewModel
+
+@{
+	ViewData["Title"] = "Ogłoszenia";
+}
+
+<form id="filter" class="filter-container">
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="filter-desc">Marka pojazdu:</div>
+			<div class="form-group">
+				@Html.DropDownListFor(x => x.Filters.Brand,
+				new SelectList(Model.BrandList),
+				"-- wybierz markę --", new { id = "brand", @class = "form-control mb-2" })
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="filter-desc">Model pojazdu:</div>
+			<div class="form-group">
+				@Html.DropDownListFor(x => x.Filters.Model,
+				new SelectList(Model.ModelList),
+				"-- wybierz model --", new { id = "model", @disabled = "disabled", @class = "form-control mb-2" })
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="filter-desc">Rok produkcji:</div>
+			<div class="form-group">
+				@Html.DropDownListFor(x => x.Filters.Year,
+				new SelectList(Model.Cars, "Year", "Year"),
+				"-- wybierz rok produkcji --", new { id = "year", /*@disabled = "disabled",*/ @class = "form-control mb-2" })
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="filter-desc">Rodzaj paliwa:</div>
+			<div class="form-group">
+				@Html.DropDownListFor(x => x.Filters.Fuel,
+				@Html.GetEnumSelectList(typeof(FuelType)),
+				"-- wybierz rodzaj paliwa --", new { id = "fuel", /*@disabled = "disabled",*/ @class = "form-control mb-2" })
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="filter-desc">Cena od:</div>
+			<div class="form-group">
+				<input type="number" min="0" class="form-control" name="price-from" id="price-from" value="0" />
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="filter-desc">Cena do:</div>
+			<div class="form-group">
+				<input type="number" min="0" max="5000000" class="form-control" name="price-to" id="price-to" value="1000000" />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div>
+			<button type="submit" class="button">Zastosuj</button>
+		</div>
+	</div>
+</form>
+
+<div>
+	@await Html.PartialAsync("_CarsList.cshtml", Model)
+</div>
+
+
+
+@section Scripts
+	{
+	<script type="text/javascript">
+
+
+		function deleteCar(btn) {
+			if (!confirm("Czy na pewno chcesz usunąć ogłoszenie?"))
+				return;
+
+			var row = btn.parentNode.parentNode;
+
+			row.parentNode.removeChild(row);
+		}
+
+		function editCar() {
+			alert('Edycja ogłoszenia');
+		}
+
+		$('#filter').submit(function () {
+			$.ajax({
+				type: "POST",
+				url: "@Url.Action("Index", "Car")",
+				data: $(this).serialize(),
+				success: function (data) {
+					$('#carsList').html(data);
+				},
+				error: function (data) {
+					alert(data.message)
+				},
+				dataType: "html"
+			});
+
+			return false;
+		});
+
+		$(document).ready(function () {
+			$("#brand").change(function () {
+				//$("#model").empty();
+				$.ajax({
+					type: 'POST',
+					url: '@Url.Action("GetModels")',
+					dataType: 'json',
+					data: { id: $("#brand").val() },
+					success: function (mems) {
+						//document.getElementById('model').removeAttribute('disabled');
+						console.log(mems);
+						if (mems.length > 0) {
+							$("#model").empty();
+							$("#model").removeAttr('disabled');
+						} else {
+							$("#model").attr('disabled', 'disabled');
+						}
+						console.log(mems);
+						$("#model").append('<option value="">-- wybierz model --</option>');
+						$.each(mems, function (i, model) {
+							console.log(i, model.text);
+							$("#model").append('<option value="' + model.value + '">' + model.text + '</option>');
+						});
+					},
+					error: function (ex) {
+						alert('Failed to retrieve states.' + ex);
+					}
+				});
+				return false;
+			})
+
+		});
+
+	</script>
+}

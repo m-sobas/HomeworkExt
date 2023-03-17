@@ -1,0 +1,260 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+ }
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  background-color: #202020;
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.link-none a {
+    color: black;
+    text-decoration: none;
+}
+
+.ad-break {
+    margin-bottom: 40px;
+    clear: both;
+}
+
+.filter-container {
+    background-color: #e0e0e0;
+    border-radius: 20px 20px;
+    padding: 20px 20px;
+    margin-bottom: 30px;
+}
+
+.filter-desc {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.content {
+    background-color: #e0e0e0;
+    width: 100%;
+}
+
+.button {
+    background-color: #303030;
+    border-radius: 15px 15px;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 100px;
+}
+
+.button {
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: #007194;
+    color: white;
+}
+
+.ad-box {
+    background-color: #fafafa;
+    transition-duration: 0.4s;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px 20px;
+    padding: 20px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    display: inline-flex;
+    width: 100%;
+    height: 200px;
+}
+
+.ad-box:hover {
+    background-color: #f0f0f0;
+}
+
+.ad-image-box {
+    /*background-color: lawngreen;*/
+    justify-content: center;
+    display: flex;
+    width: 200px;
+    height: 160px;
+}
+
+.ad-box img {
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.ad-content {
+    /*background-color: lightyellow;*/
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    font-size: 0.8em;
+}
+
+.ad-content .field {
+    width: 90px;
+    display: inline-block;
+}
+
+.car-delete {
+    background-color: darkred;
+    transition-duration: 0.4s;
+    color: white;
+    width: 80px;
+    margin: 10px 0px;
+    padding: 3px;
+    text-align: center;
+    cursor: pointer;  
+    position: absolute;
+    top: 0;
+    left: 60px;
+}
+
+.car-delete:hover {
+    background-color: red;
+}
+
+
+.ad-content span {
+    font-weight: bold;
+}
+
+.navbar-brand {
+    height: 80px;
+}
+
+.container-fluid {
+    margin-top: 10px;
+}
+
+form select:invalid {
+    color: #999999;
+}
+
+form select option:first-child {
+    color: #999999;
+}
+
+form select:invalid option:not(:first-child) {
+    color: black;
+}
+
+.button-file {
+    background-color: #303030;
+    border-radius: 10px 10px;
+    transition-duration: 0.4s;
+    color: white;
+    padding: 3px 20px;
+    font-size: 12px;
+    width: 120px;
+}
+
+.button-file:hover {
+    background-color: #007194;
+    color: white;
+}
+
+.login-panel {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    width: 400px;
+    height: auto;
+    padding: 30px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-panel .text {
+    margin-bottom: 30px;
+    color: gray;
+}
+
+.nav > li button {
+    position: relative;
+    display: block;
+    padding: 15px;
+    background: none;
+    border: none;
+    color: #9d9d9d;
+    text-decoration: none;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    /*font-family: Helvetica;*/
+}
+
+.nav > li button:hover {
+    color: #eeeeee;
+}
