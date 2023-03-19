@@ -126,7 +126,8 @@
 						$("#model").append('<option value="">-- wybierz model --</option>');
 						$.each(mems, function (i, model) {
 							console.log(i, model.text);
-							$("#model").append('<option value="' + model.value + '">' + model.text + '</option>');
+							//$("#model").append('<option value="' + model.value + '">' + model.text + '</option>');
+							$("#model").append('<option>' + model.text + '</option>');
 						});
 					},
 					error: function (ex) {
