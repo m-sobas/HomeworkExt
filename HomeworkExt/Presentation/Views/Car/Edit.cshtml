@@ -21,7 +21,7 @@
 			</div>
 			<div class="form-group">
 				@Html.DropDownListFor(x => x.Car.Fuel,
-				Html.GetEnumSelectList(typeof(FuelType)), new { @class = "form-control mb-2" })
+				Html.GetEnumSelectList(typeof(FuelType)), "-- wybierz rodzaj paliwa --", new { @class = "form-control mb-2" })
 			</div>
 			<div class="form-group">
 				<input class="form-control" type="number" min="0" max="100000000" id="car-price" name="car-price" value="@Convert.ToInt32(@Model.Car.Price)" placeholder="Cena" />
