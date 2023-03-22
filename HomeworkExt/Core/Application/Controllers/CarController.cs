@@ -30,19 +30,12 @@ namespace HomeworkExt.Core.Application.Controllers
 		public IActionResult Index()
 		{
 			var userId = User.GetUserId();
-
-			var cars = _carService.GetCars(userId)
-				.ToList();
-
-			var brandList = cars
-				.Select(x => x.Brand)
-				.Distinct()
-				.ToList();
+			var cars = _carService.GetCars(userId);
 
 			var vm = new CarsViewModel
 			{
 				Cars = cars,
-				BrandList = brandList,
+				BrandList = _carService.GetBrands(cars),
 				Filters = new Filters()
 			};
 

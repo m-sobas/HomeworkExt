@@ -3,6 +3,7 @@ using HomeworkExt.Core.Models;
 using HomeworkExt.Core.Models.Domains;
 using HomeworkExt.Core.Models.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HomeworkExt.Core.Application.Services
 {
@@ -25,7 +26,7 @@ namespace HomeworkExt.Core.Application.Services
             throw new System.NotImplementedException();
         }
 
-        public Car GetCar(int id, string userId)
+		public Car GetCar(int id, string userId)
         {
             return _unitOfWork.Car.GetCar(id, userId);
         }
@@ -34,6 +35,13 @@ namespace HomeworkExt.Core.Application.Services
         {
             return _unitOfWork.Car.GetCars(userId, filter);
         }
+
+		public IEnumerable<string> GetBrands(IEnumerable<Car> cars)
+		{
+            return cars.Select(x => x.Brand)
+                .Distinct()
+                .ToList();
+		}
 
 		public void Update(Car car)
         {
