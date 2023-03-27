@@ -46,14 +46,16 @@
 		</div>
 		<div class="col-sm-3">
 			<div class="filter-desc">Cena od:</div>
-			<div class="form-group">				
-				<input type="number" min="0" class="form-control" name="price-from" id="price-from" value="0" />
+			<div class="form-group">			
+				@Html.TextBoxFor(x => x.Filters.PriceFrom, new { id = "price-from", type = "number", min = 0, value = "333", @class = "form-control mb-2" })
+				@*<input type="number" min="0" class="form-control" name="price-from" id="price-from" value="0" />*@
 			</div>
 		</div>
 		<div class="col-sm-3">
 			<div class="filter-desc">Cena do:</div>
 			<div class="form-group">
-				<input type="number" min="0" class="form-control" name="price-to" id="price-to" value="1000000" />
+				@Html.TextBoxFor(x => x.Filters.PriceTo, new { id = "price-to", type = "number", min = 0, value = 33333, @class = "form-control mb-2" })
+				@*<input type="number" min="0" max="10" class="form-control" name="price-to" id="price-to" value="1000000" />*@
 			</div>
 		</div>
 	</div>
@@ -141,26 +143,20 @@
 
 		$(document).ready(function () {
 			$("#model").change(function () {
-				//$("#model").empty();
 				$.ajax({
 					type: 'POST',
 					url: '@Url.Action("GetYears")',
 					dataType: 'json',
 					data: { id: $("#model").val() },
 					success: function (mems) {
-						//document.getElementById('model').removeAttribute('disabled');
-						console.log(mems);
 						if (mems.length > 0) {
 							$("#year").empty();
 							$("#year").removeAttr('disabled');
 						} else {
 							$("#year").attr('disabled', 'disabled');
 						}
-						console.log(mems);
 						$("#year").append('<option value="">-- wybierz rok produkcji --</option>');
 						$.each(mems, function (i, year) {
-							console.log(i, year.text);
-							//$("#model").append('<option value="' + model.value + '">' + model.text + '</option>');
 							$("#year").append('<option>' + year.text + '</option>');
 						});
 					},

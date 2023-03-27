@@ -35,8 +35,7 @@ namespace HomeworkExt.Core.Application.Controllers
 			var vm = new CarsViewModel
 			{
 				Cars = cars,
-				BrandList = _carService.GetBrands(cars),
-				Filters = new Filters()
+				BrandList = _carService.GetBrands(cars)
 			};
 
 			return View(vm);
@@ -53,7 +52,7 @@ namespace HomeworkExt.Core.Application.Controllers
 					Brand = viewModel.Filters.Brand,
 					Model = viewModel.Filters.Model,
 					Year = viewModel.Filters.Year,
-					Fuel = viewModel.Filters.Fuel, //null, //(FuelType)1,
+					Fuel = viewModel.Filters.Fuel, //(FuelType)1,
 					PriceFrom = viewModel.Filters.PriceFrom,
 					PriceTo = viewModel.Filters.PriceTo
 				});
@@ -116,7 +115,11 @@ namespace HomeworkExt.Core.Application.Controllers
 			var vm = new CarViewModel
 			{
 				Car = car,
-				Fuel = _carService.GetCars(userId).Select(x => x.Fuel).Distinct().OrderBy(x => x).ToList()
+				Fuel = _carService.GetCars(userId)
+					.Select(x => x.Fuel)
+					.Distinct()
+					.OrderBy(x => x)
+					.ToList()
 			};
 
 			return View(vm);

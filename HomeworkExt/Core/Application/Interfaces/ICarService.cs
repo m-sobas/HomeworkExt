@@ -11,8 +11,6 @@ namespace HomeworkExt.Core.Application.Interfaces
 
         IEnumerable<string> GetBrands(IEnumerable<Car> cars);
 
-        IEnumerable<int> GetYears(IEnumerable<Car> cars);
-
         Car GetCar(int id, string userId);
 
         void Add(Car car);
