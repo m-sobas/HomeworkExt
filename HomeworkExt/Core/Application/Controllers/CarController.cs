@@ -52,11 +52,10 @@ namespace HomeworkExt.Core.Application.Controllers
 				{
 					Brand = viewModel.Filters.Brand,
 					Model = viewModel.Filters.Model,
-					Year = null, //2020, //viewModel.YearList.First(),
-								 //Fuel = viewModel.FilterCars.Fuel,
-					Fuel = null, //(FuelType)1,
-					PriceFrom = 0,
-					PriceTo = 1000000
+					Year = viewModel.Filters.Year,
+					Fuel = viewModel.Filters.Fuel, //null, //(FuelType)1,
+					PriceFrom = viewModel.Filters.PriceFrom,
+					PriceTo = viewModel.Filters.PriceTo
 				});
 
 			var vm = new CarsViewModel
@@ -77,6 +76,22 @@ namespace HomeworkExt.Core.Application.Controllers
 						   .Select(x => new { x.Brand, x.Model })
 						   .Where(x => x.Brand == id)
 						   .Select(x => x.Model)
+						   .Distinct()
+						   .OrderBy(x => x)
+						   .ToList()
+						   ));
+		}
+
+		[HttpPost]
+		public JsonResult GetYears(string id)
+		{
+			var userId = User.GetUserId();
+
+			return Json(new SelectList(
+				_carService.GetCars(userId)
+						   .Select(x => new { x.Model, x.Year })
+						   .Where(x => x.Model == id)
+						   .Select(x => x.Year)
 						   .Distinct()
 						   .OrderBy(x => x)
 						   .ToList()

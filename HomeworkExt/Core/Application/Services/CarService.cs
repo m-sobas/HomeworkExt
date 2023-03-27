@@ -43,6 +43,13 @@ namespace HomeworkExt.Core.Application.Services
                 .ToList();
 		}
 
+		public IEnumerable<int> GetYears(IEnumerable<Car> cars)
+		{
+			return cars.Select(x => x.Year)
+				.Distinct()
+				.ToList();
+		}
+
 		public void Update(Car car)
         {
             throw new System.NotImplementedException();
