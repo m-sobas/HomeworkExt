@@ -30,12 +30,14 @@ namespace HomeworkExt.Core.Application.Controllers
 		public IActionResult Index()
 		{
 			var userId = User.GetUserId();
+			//var filters = new Filters { PriceFrom = 0, PriceTo = 1000000 };
 			var cars = _carService.GetCars(userId);
 
 			var vm = new CarsViewModel
 			{
 				Cars = cars,
 				BrandList = _carService.GetBrands(cars)
+				//Filters = filters
 			};
 
 			return View(vm);
@@ -46,7 +48,9 @@ namespace HomeworkExt.Core.Application.Controllers
 		{
 			var userId = User.GetUserId();
 
-			var cars = _carService.GetCars(userId,
+			var vm = new CarsViewModel
+			{
+				Cars = _carService.GetCars(userId,
 				new Filters
 				{
 					Brand = viewModel.Filters.Brand,
@@ -55,25 +59,21 @@ namespace HomeworkExt.Core.Application.Controllers
 					Fuel = viewModel.Filters.Fuel, //(FuelType)1,
 					PriceFrom = viewModel.Filters.PriceFrom,
 					PriceTo = viewModel.Filters.PriceTo
-				});
-
-			var vm = new CarsViewModel
-			{
-				Cars = cars
+				})
 			};
 
 			return PartialView("_CarsList", vm);
 		}
 
 		[HttpPost]
-		public JsonResult GetModels(string id)
+		public JsonResult GetModels(string brand)
 		{
 			var userId = User.GetUserId();
 
 			return Json(new SelectList(
 				_carService.GetCars(userId)
 						   .Select(x => new { x.Brand, x.Model })
-						   .Where(x => x.Brand == id)
+						   .Where(x => x.Brand == brand)
 						   .Select(x => x.Model)
 						   .Distinct()
 						   .OrderBy(x => x)
@@ -82,14 +82,14 @@ namespace HomeworkExt.Core.Application.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult GetYears(string id)
+		public JsonResult GetYears(string model)
 		{
 			var userId = User.GetUserId();
 
 			return Json(new SelectList(
 				_carService.GetCars(userId)
 						   .Select(x => new { x.Model, x.Year })
-						   .Where(x => x.Model == id)
+						   .Where(x => x.Model == model)
 						   .Select(x => x.Year)
 						   .Distinct()
 						   .OrderBy(x => x)
@@ -109,17 +109,11 @@ namespace HomeworkExt.Core.Application.Controllers
 		public IActionResult Edit(int id)
 		{
 			var userId = User.GetUserId();
-
-			var car = id == 0 ? new Car { Id = 0, UserId = userId } : _carService.GetCar(id, userId);
+			//var car = id == 0 ? new Car { Id = 0, UserId = userId } : _carService.GetCar(id, userId);
 
 			var vm = new CarViewModel
 			{
-				Car = car,
-				Fuel = _carService.GetCars(userId)
-					.Select(x => x.Fuel)
-					.Distinct()
-					.OrderBy(x => x)
-					.ToList()
+				Car = _carService.GetCar(id, userId)
 			};
 
 			return View(vm);

@@ -1,6 +1,11 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+:root {
+    --button-file-color: #303030;
+    --button-file-color-hover: #007194;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -101,7 +106,8 @@ body {
 }
 
 .button {
-    background-color: #303030;
+    background-color: var(--button-file-color);
+    border: none;
     border-radius: 15px 15px;
     color: white;
     padding: 10px 10px;
@@ -121,7 +127,7 @@ body {
 }
 
 .button:hover {
-    background-color: #007194;
+    background-color: var(--button-file-color-hover);
     color: white;
 }
 
@@ -213,7 +219,8 @@ form select:invalid option:not(:first-child) {
 }
 
 .button-file {
-    background-color: #303030;
+    background-color: var(--button-file-color);
+    border: none;
     border-radius: 10px 10px;
     transition-duration: 0.4s;
     color: white;
@@ -223,7 +230,7 @@ form select:invalid option:not(:first-child) {
 }
 
 .button-file:hover {
-    background-color: #007194;
+    background-color: var(--button-file-color-hover);
     color: white;
 }
 
@@ -257,4 +264,27 @@ form select:invalid option:not(:first-child) {
 
 .nav > li button:hover {
     color: #eeeeee;
+}
+
+.form-control:disabled {
+    background-color: #eee;
+    color: #ccc;
+}
+
+.car-edit {
+    background-color: forestgreen;
+    transition-duration: 0.4s;
+    color: white;
+    width: 80px;
+    margin: 10px 0px;
+    padding: 3px;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 150px;
+}
+
+.car-edit:hover {
+    background-color: limegreen;
 }

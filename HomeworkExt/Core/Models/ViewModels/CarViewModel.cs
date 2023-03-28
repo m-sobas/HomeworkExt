@@ -7,7 +7,5 @@ namespace HomeworkExt.Core.Models.ViewModels
 	public class CarViewModel
 	{
 		public Car Car { get; set; }
-
-		public IEnumerable<FuelType> Fuel { get; set; }
 	}
 }

@@ -11,7 +11,7 @@ namespace HomeworkExt.Core.Application.Interfaces
     {
         IEnumerable<Car> GetCars(string userId, Filters filter);
 
-        Car GetCar(int id, string userId);
+		Car GetCar(int id, string userId);
 
         void Add(Car car);
 

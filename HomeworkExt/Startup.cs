@@ -51,6 +51,7 @@ namespace HomeworkExt
             {
                 o.ViewLocationFormats.Clear();
 				o.ViewLocationFormats.Add("/Presentation/Views/Car/{0}" + RazorViewEngine.ViewExtension);
+				o.ViewLocationFormats.Add("/Presentation/Views/Home/{0}" + RazorViewEngine.ViewExtension);
 				o.ViewLocationFormats.Add("/Presentation/Views/Shared/{0}" + RazorViewEngine.ViewExtension);
 				o.AreaPageViewLocationFormats.Clear();
                 o.AreaPageViewLocationFormats.Add("/Presentation/Views/Shared/{0}" + RazorViewEngine.ViewExtension);

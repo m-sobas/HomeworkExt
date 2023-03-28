@@ -10,39 +10,39 @@
 <div id="carsList">
 	@foreach (var car in Model.Cars)
 	{
-			<div class="col-sm-6 link-none">
-				<a href="@Url.Action("Edit","Car", new { id = car.Id })">
-					<div class="ad-box">
-						<div class="ad-image-box">
-							<img src="@car.PhotoFileName" />
-						</div>
-						<div class="ad-content">
-							<div class="field">Marka:</div>
-							<span>@car.Brand</span> <br />
-
-							<div class="field">Model:</div>
-							<span>@car.Model</span> <br />
-
-							<div class="field">Rok produkcji:</div>
-							<span>@car.Year</span> <br />
-
-							<div class="field">Rodzaj paliwa:</div>
-							<span>@car.Fuel.GetDisplayName()</span> <br />
-
-							<div class="field">Cena:</div>
-							<span>@String.Format("{0:n0}", car.Price) zł</span> <br />
-						</div>
+		<div class="col-sm-6 link-none">
+			<a href="@Url.Action("Edit","Car", new { id = car.Id })">
+				<div class="ad-box">
+					<div class="ad-image-box">
+						<img src="@car.PhotoFileName" />
 					</div>
-				</a>
+					<div class="ad-content">
+						<div class="field">Marka:</div>
+						<span>@car.Brand</span> <br />
+
+						<div class="field">Model:</div>
+						<span>@car.Model</span> <br />
+
+						<div class="field">Rok produkcji:</div>
+						<span>@car.Year</span> <br />
+
+						<div class="field">Rodzaj paliwa:</div>
+						<span>@car.Fuel.GetDisplayName()</span> <br />
+
+						<div class="field">Cena:</div>
+						<span>@String.Format("{0:n0}", car.Price) zł</span> <br />
+					</div>
+				</div>
+			</a>
 
 			@if (SignInManager.IsSignedIn(User))
 			{
-						<div>
-							<div class="car-delete" onclick="deleteCar(this)">Usuń</div>
-						</div>
+				<div>
+					<div class="car-delete" onclick="deleteCar(this)">Usuń</div>
+				</div>
 			}
 
-			</div>
+		</div>
 	}
 
 	<div class="ad-break"></div>

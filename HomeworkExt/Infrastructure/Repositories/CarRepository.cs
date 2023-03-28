@@ -20,41 +20,25 @@ namespace HomeworkExt.Infrastructure.Repositories
             _context = context;
         }
 
-        public void Add(Car car)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Delete(int id, string userId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Car GetCar(int id, string userId)
-        {
-            return _context.Cars
-                .Single(x => x.Id == id);
-        }
-
-        public IEnumerable<Car> GetCars(string userId, Filters filters = null)
-        {
+		public IEnumerable<Car> GetCars(string userId, Filters filters = null)
+		{
 			if (filters == null)
-            {
-                return _context.Cars
-                //.Where(x => x.UserId == userId)
-                .ToList();
-            }
-            else
-            {
-                var cars = _context.Cars
-                    .Where(x => x.Price >= filters.PriceFrom && x.Price <= filters.PriceTo)
-                    .ToList();
+			{
+				return _context.Cars
+				//.Where(x => x.UserId == userId)
+				.ToList();
+			}
+			else
+			{
+				var cars = _context.Cars
+					.Where(x => x.Price >= filters.PriceFrom && x.Price <= filters.PriceTo)
+					.ToList();
 
 				if (filters.Brand != null)
 					cars = cars.Where(x => x.Brand == filters.Brand).ToList();
 
 				if (filters.Model != null)
-                    cars = cars.Where(x => x.Model == filters.Model).ToList();
+					cars = cars.Where(x => x.Model == filters.Model).ToList();
 
 				if (filters.Year != null)
 					cars = cars.Where(x => x.Year == filters.Year).ToList();
@@ -66,9 +50,25 @@ namespace HomeworkExt.Infrastructure.Repositories
 			}
 		}
 
+		public Car GetCar(int id, string userId)
+		{
+			return _context.Cars
+				.Single(x => x.Id == id);
+		}
+
+		public void Add(Car car)
+        {
+            throw new System.NotImplementedException();
+        }
+
 		public void Update(Car car)
         {
             throw new System.NotImplementedException();
         }
-    }
+
+		public void Delete(int id, string userId)
+		{
+			throw new System.NotImplementedException();
+		}
+	}
 }

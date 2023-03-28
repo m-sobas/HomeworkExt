@@ -46,16 +46,16 @@
 		</div>
 		<div class="col-sm-3">
 			<div class="filter-desc">Cena od:</div>
-			<div class="form-group">			
-				@Html.TextBoxFor(x => x.Filters.PriceFrom, new { id = "price-from", type = "number", min = 0, value = "333", @class = "form-control mb-2" })
-				@*<input type="number" min="0" class="form-control" name="price-from" id="price-from" value="0" />*@
+			<div class="form-group">
+				@*@Html.TextBoxFor(x => x.Filters.PriceFrom, new { id = "price-from", type = "number", min = 0, @class = "form-control mb-2" })*@
+				<input type="number" min="0" class="form-control" name="Filters.PriceFrom" id="price-from" value="0" />
 			</div>
 		</div>
 		<div class="col-sm-3">
 			<div class="filter-desc">Cena do:</div>
 			<div class="form-group">
-				@Html.TextBoxFor(x => x.Filters.PriceTo, new { id = "price-to", type = "number", min = 0, value = 33333, @class = "form-control mb-2" })
-				@*<input type="number" min="0" max="10" class="form-control" name="price-to" id="price-to" value="1000000" />*@
+				@*@Html.TextBoxFor(x => x.Filters.PriceTo, new { id = "price-to", type = "number", min = 0, @class = "form-control mb-2" })*@
+				<input type="number" min="0" class="form-control" name="Filters.PriceTo" id="price-to" value="1000000" />
 			</div>
 		</div>
 	</div>
@@ -109,29 +109,28 @@
 
 		$(document).ready(function () {
 			$("#brand").change(function () {
-				//$("#model").empty();
 				$.ajax({
 					type: 'POST',
 					url: '@Url.Action("GetModels")',
 					dataType: 'json',
-					data: { id: $("#brand").val() },
+					data: { brand: $("#brand").val() },
 					success: function (mems) {
 						//document.getElementById('model').removeAttribute('disabled');
-						console.log(mems);
+						$("#model").empty();
+						$("#model").append('<option value="">-- wybierz model --</option>');
 						if (mems.length > 0) {
-							$("#model").empty();
 							$("#model").removeAttr('disabled');
+							$.each(mems, function (i, model) {
+								console.log(i, model.text);
+								//$("#model").append('<option value="' + model.value + '">' + model.text + '</option>');
+								$("#model").append('<option>' + model.text + '</option>');
+							});
 						} else {
+							$("#year").empty();
+							$("#year").append('<option value="">-- wybierz rok produkcji --</option>');
 							$("#model").attr('disabled', 'disabled');
 							$("#year").attr('disabled', 'disabled');
 						}
-						console.log(mems);
-						$("#model").append('<option value="">-- wybierz model --</option>');
-						$.each(mems, function (i, model) {
-							console.log(i, model.text);
-							//$("#model").append('<option value="' + model.value + '">' + model.text + '</option>');
-							$("#model").append('<option>' + model.text + '</option>');
-						});
 					},
 					error: function (ex) {
 						alert('Failed to retrieve states.' + ex);
@@ -147,18 +146,18 @@
 					type: 'POST',
 					url: '@Url.Action("GetYears")',
 					dataType: 'json',
-					data: { id: $("#model").val() },
+					data: { model: $("#model").val() },
 					success: function (mems) {
+						$("#year").empty();
+						$("#year").append('<option value="">-- wybierz rok produkcji --</option>');
 						if (mems.length > 0) {
-							$("#year").empty();
 							$("#year").removeAttr('disabled');
+							$.each(mems, function (i, year) {
+								$("#year").append('<option>' + year.text + '</option>');
+							});
 						} else {
 							$("#year").attr('disabled', 'disabled');
 						}
-						$("#year").append('<option value="">-- wybierz rok produkcji --</option>');
-						$.each(mems, function (i, year) {
-							$("#year").append('<option>' + year.text + '</option>');
-						});
 					},
 					error: function (ex) {
 						alert('Failed to retrieve states.' + ex);

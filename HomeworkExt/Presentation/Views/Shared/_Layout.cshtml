@@ -23,40 +23,13 @@
 				{
 					<ul class="nav navbar-nav">
 						<li><a asp-controller="Car" asp-action="Add">Dodaj ogłoszenie</a></li>
-						@*<li class="active"><a href="#">Nowe ogłoszenie</a></li>*@
-						@*<li><a href="#">Dodaj ogłoszenie</a></li>*@
 					</ul>
-				}
-				
-				<partial name="_LoginPartial" />
-
-@*				<ul class="nav navbar-nav navbar-right">
-					<li><a asp-area="Identity" asp-page="/Account/Register"><span class="glyphicon glyphicon-user"></span> Rejestracja</a></li>
-					<li><a asp-area="Identity" asp-page="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Zaloguj się</a></li>
-				</ul>*@
+				}			
+				<partial name="_LoginPartial" />			
 			</div>
 		</nav>
-
-
-		@*		<form id="filterForm">
-		<div class="form-row align-items-center">
-		<div class="col-auto">
-		@Html.TextBoxFor(x => x.FilterTasks.Title, new { @class = "form-control mb-2", placeholder = "Tytuł" })
-		</div>
-
-		<div class="col-auto">
-		@Html.DropDownListFor(x => x.FilterTasks.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "-- wybierz kategrię --", new { @class = "form-control mb-2" })
-		</div>
-		<div class="col-auto">
-		<button type="submit" class="btn btn-primary mb-2">Szukaj</button>
-		</div>
-		</div>
-		</form>*@
-
-
-
-
 	</header>
+
 	<div class="container">
 		<main role="main" class="pb-3">
 			@RenderBody()
