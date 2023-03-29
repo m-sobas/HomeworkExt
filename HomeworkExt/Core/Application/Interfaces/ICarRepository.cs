@@ -9,9 +9,9 @@ namespace HomeworkExt.Core.Application.Interfaces
 {
     public interface ICarRepository
     {
-        IEnumerable<Car> GetCars(string userId, Filters filter);
+        IEnumerable<Car> GetCars(string userId, Filters filter = null);
 
-		Car GetCar(int id, string userId);
+		Car GetCar(string userId, int id);
 
         void Add(Car car);
 

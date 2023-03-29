@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeworkExt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230314153454_INIT")]
+    [Migration("20230329054104_INIT")]
     partial class INIT
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

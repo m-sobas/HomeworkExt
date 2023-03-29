@@ -50,10 +50,11 @@ namespace HomeworkExt.Infrastructure.Repositories
 			}
 		}
 
-		public Car GetCar(int id, string userId)
+		public Car GetCar(string userId, int id)
 		{
 			return _context.Cars
-				.Single(x => x.Id == id);
+				.Where(x => x.UserId == userId)
+				.SingleOrDefault(x => x.Id == id);
 		}
 
 		public void Add(Car car)

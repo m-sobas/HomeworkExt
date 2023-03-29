@@ -71,14 +71,8 @@ namespace HomeworkExt.Core.Application.Controllers
 			var userId = User.GetUserId();
 
 			return Json(new SelectList(
-				_carService.GetCars(userId)
-						   .Select(x => new { x.Brand, x.Model })
-						   .Where(x => x.Brand == brand)
-						   .Select(x => x.Model)
-						   .Distinct()
-						   .OrderBy(x => x)
-						   .ToList()
-						   ));
+				_carService.GetModels(userId, brand)
+				));
 		}
 
 		[HttpPost]
@@ -87,17 +81,11 @@ namespace HomeworkExt.Core.Application.Controllers
 			var userId = User.GetUserId();
 
 			return Json(new SelectList(
-				_carService.GetCars(userId)
-						   .Select(x => new { x.Model, x.Year })
-						   .Where(x => x.Model == model)
-						   .Select(x => x.Year)
-						   .Distinct()
-						   .OrderBy(x => x)
-						   .ToList()
-						   ));
+				_carService.GetYears(userId, model)
+				));
 		}
 
-		[Authorize]
+		//[Authorize]
 		public IActionResult Add()
 		{
 			//throw new Exception("Kod błędu 123");
@@ -109,11 +97,10 @@ namespace HomeworkExt.Core.Application.Controllers
 		public IActionResult Edit(int id)
 		{
 			var userId = User.GetUserId();
-			//var car = id == 0 ? new Car { Id = 0, UserId = userId } : _carService.GetCar(id, userId);
 
 			var vm = new CarViewModel
 			{
-				Car = _carService.GetCar(id, userId)
+				Car = _carService.GetCar(userId, id)
 			};
 
 			return View(vm);

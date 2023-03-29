@@ -6,6 +6,6 @@ namespace HomeworkExt.Core.Models.ViewModels
 {
 	public class CarViewModel
 	{
-		public Car Car { get; set; }
+        public Car Car { get; set; }
 	}
 }

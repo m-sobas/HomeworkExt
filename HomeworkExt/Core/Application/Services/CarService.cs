@@ -28,9 +28,31 @@ namespace HomeworkExt.Core.Application.Services
 				.ToList();
 		}
 
-		public Car GetCar(int id, string userId)
+		public IEnumerable<string> GetModels(string userId, string brand)
 		{
-			return _unitOfWork.Car.GetCar(id, userId);
+			return _unitOfWork.Car.GetCars(userId)
+				.Select(x => new { x.Brand, x.Model })
+				.Where(x => x.Brand == brand)
+				.Select(x => x.Model)
+				.Distinct()
+				.OrderBy(x => x)
+				.ToList();
+		}
+
+		public IEnumerable<int> GetYears(string userId, string model)
+		{
+			return _unitOfWork.Car.GetCars(userId)
+				.Select(x => new { x.Model, x.Year })
+				.Where(x => x.Model == model)
+				.Select(x => x.Year)
+				.Distinct()
+				.OrderBy(x => x)
+				.ToList();
+		}
+
+		public Car GetCar(string userId, int id)
+		{
+			return _unitOfWork.Car.GetCar(userId, id);
 		}
 
 		public void Add(Car car)
