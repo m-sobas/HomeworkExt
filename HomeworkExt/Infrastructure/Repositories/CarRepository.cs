@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace HomeworkExt.Infrastructure.Repositories
@@ -52,9 +53,14 @@ namespace HomeworkExt.Infrastructure.Repositories
 
 		public Car GetCar(string userId, int id)
 		{
-			return _context.Cars
+			var car = _context.Cars				
 				.Where(x => x.UserId == userId)
 				.SingleOrDefault(x => x.Id == id);
+
+			if (car == null)
+				return new Car { Year = null, Fuel = (FuelType)1000, Price = null };
+
+			return car;
 		}
 
 		public void Add(Car car)

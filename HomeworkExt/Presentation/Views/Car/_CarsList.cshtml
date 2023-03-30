@@ -27,10 +27,12 @@
 						<span>@car.Year</span> <br />
 
 						<div class="field">Rodzaj paliwa:</div>
-						<span>@car.Fuel.GetDisplayName()</span> <br />
+						@*<span>@car.Fuel.GetDisplayName()</span> <br />*@
+						<span>@car.Fuel</span> <br />
 
 						<div class="field">Cena:</div>
-						<span>@String.Format("{0:n0}", car.Price) zł</span> <br />
+						@*<span>@String.Format("{0:n0}", car.Price) zł</span> <br />*@
+						<span>@car.Price</span> <br />
 					</div>
 				</div>
 			</a>

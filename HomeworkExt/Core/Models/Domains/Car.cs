@@ -21,7 +21,7 @@ namespace HomeworkExt.Core.Models.Domains
 
         [Required(ErrorMessage = "Pole jest wymagane")]
         [Display(Name = "Rok produkcji")]
-        public int Year { get; set; }
+        public int? Year { get; set; }
 
         [Required(ErrorMessage = "Pole jest wymagane")]
         [Display(Name = "Typ paliwa")]
@@ -29,7 +29,7 @@ namespace HomeworkExt.Core.Models.Domains
 
         [Required(ErrorMessage = "Pole jest wymagane")]
         [Display(Name = "Cena")]
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
 
         public string PhotoFileName { get; set; }
 

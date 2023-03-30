@@ -44,7 +44,7 @@ namespace HomeworkExt.Core.Application.Services
 			return _unitOfWork.Car.GetCars(userId)
 				.Select(x => new { x.Model, x.Year })
 				.Where(x => x.Model == model)
-				.Select(x => x.Year)
+				.Select(x => (int)x.Year)
 				.Distinct()
 				.OrderBy(x => x)
 				.ToList();
