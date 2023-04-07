@@ -29,7 +29,8 @@ namespace HomeworkExt.Core.Models.Domains
 
         [Required(ErrorMessage = "Pole jest wymagane")]
         [Display(Name = "Cena")]
-        public decimal? Price { get; set; }
+		[DisplayFormat(DataFormatString = "{0:n0}")]
+		public decimal? Price { get; set; }
 
         public string PhotoFileName { get; set; }
 

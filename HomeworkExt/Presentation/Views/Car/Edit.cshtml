@@ -29,7 +29,8 @@
 			</div>
 			<div class="form-group">
 				<label>Cena</label>
-				<input class="form-control" type="number" min="0" max="100000000" id="car-price" name="car-price" value="@Convert.ToInt32(Model.Car.Price)" placeholder="Cena" />
+				@Html.TextBoxFor(x => x.Car.Price, new { @class="form-control", placeholder = "Cena", type="number" })
+				@*<input class="form-control" type="number" min="0" max="100000000" id="car-price" name="car-price" value="@Model.Car.Price" placeholder="Cena" />*@
 			</div>
 			<div class="form-group">
 				<input class="form-control" type="file" id="car-image" name="car-image" />

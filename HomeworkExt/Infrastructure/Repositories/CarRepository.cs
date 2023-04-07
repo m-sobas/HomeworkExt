@@ -4,6 +4,7 @@ using HomeworkExt.Core.Models.Domains;
 using HomeworkExt.Core.Models.ViewModels;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore.Internal;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -53,8 +54,8 @@ namespace HomeworkExt.Infrastructure.Repositories
 
 		public Car GetCar(string userId, int id)
 		{
-			var car = _context.Cars				
-				.Where(x => x.UserId == userId)
+			var car = _context.Cars
+				//.Where(x => x.UserId == userId)
 				.SingleOrDefault(x => x.Id == id);
 
 			if (car == null)
